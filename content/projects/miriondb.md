@@ -9,7 +9,7 @@ draft: false
 
 A simple translated card database from the game 
 [*THE IDOLM@STER MILLION LIVE: THEATER DAYS*](https://www.project-imas.com/wiki/THE_iDOLM@STER_Million_Live!:_Theater_Days) 
-or mirishita for short (or in katakana, *ミリシタ*). The website uses [Princess](https://api.matsurihi.me/docs/) to obtain the many card's
+or mirishita for short (or in katakana, *ミリシタ*). The website uses the [Princess](https://api.matsurihi.me/docs/) API to obtain the many card's
 information. For the cards' images it downloads from [matsurihi.me](https://mltd.matsurihi.me/) itself, so the website can be self-sufficient
 and not rely on their services aside from occasinally updating cards and images.
 
