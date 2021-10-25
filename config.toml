@@ -1,0 +1,48 @@
+languageCode = 'en-us'
+title = 'EthanSk13s'
+theme = "PaperMod"
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04"
+
+  homeSubtitle = "Yes, that's me."
+
+  disableReadOtherPosts = false
+
+  enableSharingButtons = true
+  [params.profileMode]
+    enabled = true
+    title = "EthanSk13s"
+    subtitle = "Yes, that's me"
+
+  [[params.socialIcons]]
+    name = "discord"
+    url  = "https://discord.com/users/199450581478146048"
+
+  [[params.socialIcons]]
+    name = "github"
+    url  = "https://github.com/EthanSk13s"
+
+  [[params.socialIcons]]
+    name = "youtube"
+    url = "https://www.youtube.com/channel/UCoU0QuH8DXgCRZgJfu8c9pw"
+   
+
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
+[menu]
+  [[menu.main]]
+    identifier = "projects"
+    name       = "Projects"
+    url        = "/projects"
+
+  [[menu.main]]
+    identifier = "more-info"
+    name       = "More Info"
+    url        = "/info"
