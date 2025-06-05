@@ -30,4 +30,4 @@ coverage
 *.tsbuildinfo
 
 # Article parser output
-./public/article-parsed.json
+public/article-parsed.json
