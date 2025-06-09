@@ -1,20 +1,31 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { ref, type Ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 import ArticleLink from '@/components/ArticleLink.vue';
 import { ArticleData } from '@/stores/article-data';
 
 import type { ArticleCategory } from '@/article_parser';
 
-const articles: ArticleCategory[] = ArticleData().articles;
 const router = useRouter();
+const route = useRoute();
+const projects: Ref<ArticleCategory | undefined> = ref();
 
-let projects: ArticleCategory | undefined = articles.find((element) => element.category === 'projects');
+async function getProjectArticles() {
+  const articleStore = ArticleData();
+  if (articleStore.articles.length == 0) {
+      await articleStore.init();
+  }
+  let articles: ArticleCategory[] = articleStore.articles;
 
-if (projects === undefined) {
-  router.push({ 'name': 'notFound', replace: true });
+  projects.value = articles.find((element) => element.category === 'projects');
+
+  if (projects.value === undefined) {
+    router.push({ 'name': 'notFound', replace: true });
+  }
 }
 
+watch(() => route.name, getProjectArticles, { immediate: true });
 </script>
 <template>
   <div class="flex flex-col gap-4">
@@ -22,7 +33,7 @@ if (projects === undefined) {
       Projects
     </div>
     <ArticleLink
-      v-for="article in projects!.articles"
+      v-for="article in projects?.articles"
       :article-name="article.title"
       :article-description="article.desc"
       :article-link=" `article/projects/${article.fileName.replace('.md', '')}`"

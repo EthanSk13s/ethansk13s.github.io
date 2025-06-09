@@ -9,6 +9,7 @@ import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
 import { ArticleData } from './stores/article-data'
+import type { ArticleCategory } from './article_parser'
 
 
 const pinia = createPinia()
@@ -17,10 +18,8 @@ const app = createApp(App)
 app.use(router);
 app.use(pinia);
 
-ArticleData().init();
-
 app.use(VueAxios, axios);
 
 app.provide('axios', app.config.globalProperties.axios);
 
-app.mount('#app')
+app.mount('#app');
