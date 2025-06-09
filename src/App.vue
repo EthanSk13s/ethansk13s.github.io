@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import FooterQuote from './components/FooterQuote.vue';
 
 </script>
 
@@ -21,7 +22,5 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterView />
     </div>
   </main>
-  <footer class="flex flex-col justify-center cotent-end m-auto md:w-7/12 mt-5 gap-2 p-4 text-center">
-      Footer.
-  </footer>
+  <FooterQuote/>
 </template>
