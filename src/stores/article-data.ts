@@ -14,7 +14,6 @@ export const ArticleData = defineStore('article-data', {
     actions: {
         async init() {
             this.articles = await getArticles();
-            console.log(this.articles);
         }
     }
 })
