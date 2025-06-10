@@ -15,8 +15,6 @@ async function updateQuote() {
   let index = Math.random() * QUOTES.length | 0;
   let newQuote: Quote = QUOTES[index];
 
-  console.log(index);
-
   origin.value = newQuote.origin;
   text.value = newQuote.text;
   url.value = newQuote.url;
