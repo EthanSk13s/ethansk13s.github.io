@@ -32,3 +32,15 @@ const router = createRouter({
 })
 
 export default router;
+
+router.afterEach((to, from) => {
+  if (to.name === 'home') {
+    to.meta.title = "Home";
+  } else if (to.name === 'notFound') {
+    to.meta.title = "Page not found"; 
+  } else if (to.name === 'Projects') {
+    to.meta.title = "Projects";
+  }
+
+  document.title = "EthanSk13s - " + to.meta.title;
+});

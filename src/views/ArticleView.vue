@@ -38,6 +38,14 @@ export default defineComponent({
           this.markdown = md.render(y);
         })
       })
+  },
+  beforeRouteEnter(to, from, next) {
+    to.meta.title = to.params.article_name;
+    next();
+  },
+  beforeRouteUpdate(to, from, next) {
+    to.meta.title = to.params.article_name;
+    next();
   }
 })
 
