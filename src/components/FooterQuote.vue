@@ -30,7 +30,7 @@ watch(() => route.name, updateQuote, { immediate: true });
       "{{ text }}"
     </div>
     <div class="italic">
-      <a :href="url" class="text-ctp-blue">{{ origin }}</a>
+      <a :href="url" class="text-ctp-blue hover:text-ctp-blue-800">{{ origin }}</a>
     </div>
   </footer>
 </template>
