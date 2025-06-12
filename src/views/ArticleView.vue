@@ -30,9 +30,11 @@ export default defineComponent({
 
     fetch(`/articles/${category}/${articleName}.md`)
       .then(x => {
+        /*
         if (x.headers.get("content-type") != "text/markdown") {
           router.push({ 'name': 'notFound', replace: true  })
         }
+        */
 
         x.text().then(y => {
           this.markdown = md.render(y);
