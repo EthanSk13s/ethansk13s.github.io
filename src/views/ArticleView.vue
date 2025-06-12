@@ -53,9 +53,12 @@ export default defineComponent({
 
 <template>
   <div class="prose prose-headings:text-ctp-text prose-p:text-ctp-text
-     prose-a:text-ctp-blue prose-strong:text-ctp-text prose-strong:font-bold
+     prose-a:text-ctp-blue
+     prose-a:hover:text-ctp-blue-800
+     prose-strong:text-ctp-text prose-strong:font-bold
      prose-li:text-ctp-text marker:text-ctp-text marker:font-bold
      prose-img:rounded
+     prose-blockquote:border-ctp-green
      prose-pre:bg-mocha
      prose-code:text-ctp-maroon prose-code:before:content-[''] prose-code:after:content-[''] max-w-none">
     <div v-html="markdown" />
