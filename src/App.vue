@@ -12,7 +12,11 @@ import FooterQuote from './components/FooterQuote.vue';
       <div class="md:flex gap-4 text-lg">
         <RouterLink to="/projects" class="hover:text-ctp-subtext0">Projects</RouterLink>
         <div>Random thoughts</div>
-        <div>More About Me</div>
+        <div class="h-[28px]">
+          <a href="https://github.com/EthanSk13s">
+            <img class="h-full w-full object-contain mx-auto dark:invert-90 light:invert-[.5]" src="/github-mark.svg">
+          </a>
+        </div>
       </div>
     </div>
   </header>
