@@ -4,6 +4,8 @@ import HomeView from "@/views/HomeView.vue"
 import ArticleView from '@/views/ArticleView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
+import BlogsView from '@/views/BlogsView.vue';
+import ToolsView from '@/views/tools/ToolsView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,6 +29,16 @@ const router = createRouter({
       path: '/projects',
       name: 'Projects',
       component: ProjectsView
+    },
+    {
+      path: '/blogs',
+      name: 'blogs',
+      component: BlogsView
+    },
+    {
+      path: '/tools',
+      name: 'tools',
+      component: ToolsView
     }
   ],
 })
