@@ -11,6 +11,46 @@ const STAT_THRESHOLDS_PROB: number[][] = [
     [0.2, 0.7, 0.1]
 ];
 
+enum SkillType {
+    NORMAL,
+    UPGRADED,
+    GOLD
+}
+
+class Skill {
+    skillType: SkillType;
+    minSkillSpark: number = 0;
+    maxSkillSpark: number = 2;
+
+    constructor(skillType: SkillType) {
+        this.skillType = skillType;
+    }
+
+    calcOdds(isRankSS: boolean) {
+        // Determine which skill threshold the parent is in.
+        //  If the parent is an SS Rank, we'll have to switch our calculations.
+        let skillThrshldProbs = isRankSS ? NORM_WHITE_SKILL_SPRK_PROB : SS_WHITE_SKILL_SPRK_PROB;
+
+        let thrshldProb;
+        if (this.minSkillSpark == 0 && this.maxSkillSpark == 2) { 
+            thrshldProb = 1; 
+        } else if (this.minSkillSpark == this.maxSkillSpark) {
+            thrshldProb = skillThrshldProbs[this.minSkillSpark];
+        } else {
+            thrshldProb = skillThrshldProbs[this.minSkillSpark] + skillThrshldProbs[this.maxSkillSpark];
+        }
+
+        let skillProb;
+        if (this.skillType <= SkillType.GOLD && this.skillType >= SkillType.NORMAL) {
+            skillProb = SKILL_PROBS[this.skillType];
+        } else {
+            skillProb = SKILL_PROBS[SkillType.GOLD];
+        }
+
+        return skillProb * thrshldProb;
+    }
+}
+
 class UmaParent {
     isRankSS: boolean = false;
     aptChoices: number = 0;
@@ -22,12 +62,11 @@ class UmaParent {
     minStatSpark: number = 0;
     maxStatSpark: number = 2;
 
+    skills: Skill[];
 
-    upgrdSkillChoices: number = 0;
-    goldSkillChoices: number = 0;
-    whiteSkillChoices: number = 0;
-    minSkillSpark: number = 0;
-    maxSkillSpark: number = 2;
+    constructor() {
+        this.skills = [];
+    }
 
     calcOdds(): number {
         // Getting Pink sparks is completely random, 
@@ -45,27 +84,12 @@ class UmaParent {
 
         let statProb = (this.statChoices / MAX_STAT_CHOICES) * thrshldProb;
 
-        // Determing which skill threshold the parent is in.
-        //  If the parent is an SS Rank, we'll have to switch our calculations.
-        let skillThrshldProbs = this.isRankSS ? NORM_WHITE_SKILL_SPRK_PROB : SS_WHITE_SKILL_SPRK_PROB;
-        if (this.minSkillSpark == 0 && this.maxSkillSpark == 2) { 
-            thrshldProb = 1; 
-        } else if (this.minSkillSpark == this.maxSkillSpark) {
-            thrshldProb = skillThrshldProbs[this.minSkillSpark];
-        } else {
-            thrshldProb = skillThrshldProbs[this.minSkillSpark] + skillThrshldProbs[this.maxSkillSpark];
+        let skillProb = 1;
+        for (const skill of this.skills) {
+            skillProb *= skill.calcOdds(this.isRankSS);
         }
 
-        // Check if there are skills we want to inherit, otherwise probability will be 0.
-        let skillProb = 1;
-        if (this.whiteSkillChoices > 0) { skillProb *= this.whiteSkillChoices * SKILL_PROBS[0]; }
-        if (this.upgrdSkillChoices > 0) { skillProb *= this.upgrdSkillChoices * SKILL_PROBS[1]; }
-        if (this.goldSkillChoices > 0) { skillProb *= this.goldSkillChoices * SKILL_PROBS[2]; }
-
-        if (skillProb != 1) { skillProb = skillProb * thrshldProb; }
-
         return aptProb * statProb * skillProb;
-
     }
 }
 
