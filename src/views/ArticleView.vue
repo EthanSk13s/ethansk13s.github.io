@@ -3,7 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 import markdownit from 'markdown-it'
 import highlightjs from 'markdown-it-highlightjs';
 import { defineComponent } from 'vue';
-import '@catppuccin/highlightjs/css/catppuccin-mocha.css';
+import '@catppuccin/highlightjs/css/catppuccin-macchiato.css';
 
 export default defineComponent({
   data() {
@@ -61,7 +61,7 @@ export default defineComponent({
      prose-li:text-ctp-text marker:text-ctp-text marker:font-bold
      prose-img:rounded
      prose-blockquote:border-ctp-green
-     prose-pre:bg-mocha
+     prose-pre:bg-macchiato
      prose-code:text-ctp-maroon prose-code:before:content-[''] prose-code:after:content-[''] max-w-none">
     <div v-html="markdown" />
   </div>

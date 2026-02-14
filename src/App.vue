@@ -11,7 +11,8 @@ import FooterQuote from './components/FooterQuote.vue';
       <RouterLink to="/" class="text-lg font-bold hover:text-ctp-subtext0">EthanSk13s</RouterLink>
       <div class="md:flex gap-4 text-lg">
         <RouterLink to="/projects" class="hover:text-ctp-subtext0">Projects</RouterLink>
-        <div>Random thoughts</div>
+        <RouterLink to="/tools" class="hover:text-ctp-subtext0">Tools</RouterLink>
+        <RouterLink to="/blogs" class="hover:text-ctp-subtext0">Random Thoughts</RouterLink>
         <div class="h-[28px]">
           <a href="https://github.com/EthanSk13s">
             <img class="h-full w-full object-contain mx-auto dark:invert-90 light:invert-[.5]" src="/github-mark.svg">
@@ -21,7 +22,7 @@ import FooterQuote from './components/FooterQuote.vue';
     </div>
   </header>
 
-  <main class="bg-ctp-surface1 flex flex-col justify-center md:m-auto md:mt-5 md:w-7/12 mt-5 mr-2 ml-2 gap-2 p-4 rounded">
+  <main class="bg-ctp-surface flex flex-col justify-center md:m-auto md:mt-5 md:w-7/12 mt-5 mr-2 ml-2 gap-2 p-4 rounded">
     <div>
       <RouterView />
     </div>
