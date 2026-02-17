@@ -6,19 +6,22 @@ const minRangeId = `min-range-${inputId}`;
 const maxRangeId = `max-range-${inputId}`;
 const rangeTrackId = `track-${inputId}`;
 
-const min = defineModel<number>('rangeMin');
-const max = defineModel<number>('rangeMax');
+const left = defineModel<number>('leftHandle');
+const right = defineModel<number>('rightHandle');
 
 const props = defineProps<{
-  min: number
+  left: number
+  right: number
   max: number
 }>()
-const emit = defineEmits(["updateMin", "updateMax"])
 
-function updateTrack(track: HTMLElement, min: number, max: number) {
-  let ratio = (props.max - 1) / props.min
-  let minPercent = ((min - props.min) / ratio) * 100;
-  let maxPercent = ((max - props.min) / ratio) * 100;
+function updateTrack(track: HTMLElement, left: number, right: number) {
+  let min = Math.min(left, right);
+  let max = Math.max(left, right);
+
+  let ratio = (props.max) - props.left;
+  let minPercent = ((min - props.left) / ratio) * 100;
+  let maxPercent = ((max - props.left) / ratio) * 100;
 
   track.style.left = `${minPercent}%`;
   track.style.right = `${100 - maxPercent}%`;
@@ -34,43 +37,14 @@ onMounted(() => {
     return;
   }
 
-  function updateRange(this: HTMLElement, event: Event) {
-    let min = minRange.valueAsNumber;
-    let max = maxRange.valueAsNumber;
-
-    if (max == min) {
-        if (event.target === minRange) {
-            this.parentNode?.insertBefore(maxRange, minRange);
-        } else {
-            this.parentNode?.insertBefore(minRange, maxRange);
-        }
-    }
-
-    if (maxRange!.value < minRange!.value) {
-      if (event.target === minRange) {
-          let newMax = minRange!.value;
-          minRange.value = maxRange!.value;
-          maxRange.value = newMax;
-      } else {
-          let newMax = maxRange!.value;
-          minRange.value = newMax;
-          maxRange.value = minRange!.value;
-      }
-
-      //console.log("newMax: %d", newMax);
-
-      emit("updateMin", minRange.valueAsNumber);
-      emit("updateMax", maxRange.valueAsNumber);
-    }
-
+  function updateRange() {
     updateTrack(rangeTrack!, minRange.valueAsNumber, maxRange.valueAsNumber);
-
   }
 
   minRange!.addEventListener("input", updateRange);
   maxRange!.addEventListener("input", updateRange);
 
-  updateTrack(rangeTrack!, minRange.valueAsNumber, maxRange.valueAsNumber);
+  updateTrack(rangeTrack!, left.value!, right.value!);
 })
 
 </script>
@@ -80,8 +54,8 @@ onMounted(() => {
 
     <div class="relative flex pb-5 mt-4">
       <div>
-        <input type="range" :id="minRangeId" v-model.number="min" :min="props.min" :max="props.max"/>
-        <input type="range" :id="maxRangeId" v-model.number="max" :min="props.min" :max="props.max"/>
+        <input type="range" :id="minRangeId" v-model.number="left" :min="props.left" :max="props.max"/>
+        <input type="range" :id="maxRangeId" v-model.number="right" :min="props.left" :max="props.max"/>
       </div>
 
       <div class="relative w-full h-2 bg-ctp-surface0 rounded-md">
