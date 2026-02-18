@@ -7,6 +7,61 @@
   --color-macchiato: #24273a;
 }
 
+@custom-variant slider-thumb {
+  &::-webkit-slider-thumb {
+    @slot;
+  }
+
+  &::-moz-range-thumb {
+    @slot;
+  }
+}
+
+@custom-variant slider-track {
+  &::-webkit-slider-runnable-track {
+    @slot;
+  }
+}
+
+@layer components {
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    background: transparent;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .slider::-webkit-slider-runnable-track {
+    height: 2px;
+  }
+
+  .slider-thumb::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 3;
+    transform: translateY(-25%);
+  }
+
+  .slider-thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 3;
+    transform: translateY(-25%);
+  }
+}
+
 body {
   min-height: 100vh;
   line-height: 1.6;
@@ -27,45 +82,4 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    position: absolute;
-    background: transparent;
-    pointer-events: none;
-    z-index: 2;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-    height: 2px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #23a9f7;
-    border: 3px solid #23a9f7;
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: auto;
-    position: relative;
-    z-index: 3;
-    transform: translateY(-25%);
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    background: #23a9f7;
-    border: 3px solid #23a9f7;
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: auto;
-    z-index: 3;
-    transform: translateY(-25%);
 }

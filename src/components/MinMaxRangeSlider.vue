@@ -14,9 +14,52 @@ const props = defineProps<{
   right: number
   max: number
   trackWidth: number
+  color?: number
 }>()
 
 const style = `max-width: ${props.trackWidth}px;`
+
+function createRangeClass(color: number) {
+  let className;
+
+  switch (color) {
+    case 1:
+      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-blue slider-thumb:bg-ctp-blue";
+      break;
+    case 2:
+      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-red slider-thumb:bg-ctp-red";
+      break;
+    case 3:
+      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-green slider-thumb:bg-ctp-green";
+      break;
+    default:
+      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-rosewater slider-thumb:bg-ctp-rosewater";
+      break;
+  }
+
+  return className;
+}
+
+function createTrackClass(color: number) {
+  let className;
+
+  switch (color) {
+    case 1:
+      className = "absolute h-2 bg-ctp-blue rounded-md";
+      break;
+    case 2:
+      className = "absolute h-2 bg-ctp-red rounded-md";
+      break;
+    case 3:
+      className = "absolute h-2 bg-ctp-green rounded-md";
+      break;
+    default:
+      className = "absolute h-2 bg-ctp-rosewater rounded-md";
+      break;
+  }
+
+  return className;
+}
 
 function updateTrack(track: HTMLElement, left: number, right: number) {
   let min = Math.min(left, right);
@@ -57,12 +100,12 @@ onMounted(() => {
 
     <div class="relative flex pb-5 mt-4">
       <div>
-        <input type="range" :id="minRangeId" v-model.number="left" :min="props.left" :max="props.max"/>
-        <input type="range" :id="maxRangeId" v-model.number="right" :min="props.left" :max="props.max"/>
+        <input type="range" :class="createRangeClass(1)" :id="minRangeId" v-model.number="left" :min="props.left" :max="props.max"/>
+        <input type="range" :class="createRangeClass(1)":id="maxRangeId" v-model.number="right" :min="props.left" :max="props.max"/>
       </div>
 
       <div class="relative w-full h-2 bg-ctp-surface0 rounded-md">
-        <div :id="rangeTrackId" class="absolute h-2 bg-ctp-blue rounded-md"></div>
+        <div :id="rangeTrackId" :class="createTrackClass(1)"></div>
       </div>
     </div>
     <ul class="flex justify-between w-full px-[5px]">
