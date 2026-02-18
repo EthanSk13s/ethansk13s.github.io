@@ -6,18 +6,17 @@ const minRangeId = `min-range-${inputId}`;
 const maxRangeId = `max-range-${inputId}`;
 const rangeTrackId = `track-${inputId}`;
 
-const left = defineModel<number>('leftHandle');
-const right = defineModel<number>('rightHandle');
+const leftHandle = defineModel<number>('leftHandle');
+const rightHandle = defineModel<number>('rightHandle');
 
-const props = defineProps<{
-  left: number
-  right: number
+const { min, max, trackWidth, color = 0 } = defineProps<{
+  min: number
   max: number
   trackWidth: number
   color?: number
 }>()
 
-const style = `max-width: ${props.trackWidth}px;`
+const trackStyle = `max-width: ${trackWidth}px;`
 
 function createRangeClass(color: number) {
   let className;
@@ -61,13 +60,13 @@ function createTrackClass(color: number) {
   return className;
 }
 
-function updateTrack(track: HTMLElement, left: number, right: number) {
-  let min = Math.min(left, right);
-  let max = Math.max(left, right);
+function updateTrack(track: HTMLElement, leftH: number, rightH: number) {
+  let minH = Math.min(leftH, rightH);
+  let maxH = Math.max(leftH, rightH);
 
-  let ratio = (props.max) - props.left;
-  let minPercent = ((min - props.left) / ratio) * 100;
-  let maxPercent = ((max - props.left) / ratio) * 100;
+  let ratio = (max) - min;
+  let minPercent = ((minH - min) / ratio) * 100;
+  let maxPercent = ((maxH - min) / ratio) * 100;
 
   track.style.left = `${minPercent}%`;
   track.style.right = `${100 - maxPercent}%`;
@@ -90,26 +89,26 @@ onMounted(() => {
   minRange!.addEventListener("input", updateRange);
   maxRange!.addEventListener("input", updateRange);
 
-  updateTrack(rangeTrack!, left.value!, right.value!);
+  updateTrack(rangeTrack!, leftHandle.value!, rightHandle.value!);
 })
 
 </script>
 <template>
-<div class="p-4" :style="style">
+<div class="p-4" :style="trackStyle">
   <div class="price-range p-4">
 
     <div class="relative flex pb-5 mt-4">
       <div>
-        <input type="range" :class="createRangeClass(1)" :id="minRangeId" v-model.number="left" :min="props.left" :max="props.max"/>
-        <input type="range" :class="createRangeClass(1)":id="maxRangeId" v-model.number="right" :min="props.left" :max="props.max"/>
+        <input type="range" :class="createRangeClass(color)" :id="minRangeId" v-model.number="leftHandle" :min="min" :max="max"/>
+        <input type="range" :class="createRangeClass(color)":id="maxRangeId" v-model.number="rightHandle" :min="min" :max="max"/>
       </div>
 
       <div class="relative w-full h-2 bg-ctp-surface0 rounded-md">
-        <div :id="rangeTrackId" :class="createTrackClass(1)"></div>
+        <div :id="rangeTrackId" :class="createTrackClass(color)"></div>
       </div>
     </div>
     <ul class="flex justify-between w-full px-[5px]">
-      <li v-for="n in props.max" class="flex justify-center relative">
+      <li v-for="n in max" class="flex justify-center relative">
         <span class="text-sm text-ctp-surface2">{{ n }}</span>
       </li>
     </ul>
