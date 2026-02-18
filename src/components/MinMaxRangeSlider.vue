@@ -13,7 +13,10 @@ const props = defineProps<{
   left: number
   right: number
   max: number
+  trackWidth: number
 }>()
+
+const style = `max-width: ${props.trackWidth}px;`
 
 function updateTrack(track: HTMLElement, left: number, right: number) {
   let min = Math.min(left, right);
@@ -49,7 +52,7 @@ onMounted(() => {
 
 </script>
 <template>
-<div class="p-4" style="max-width:300px;">
+<div class="p-4" :style="style">
   <div class="price-range p-4">
 
     <div class="relative flex pb-5 mt-4">
