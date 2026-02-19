@@ -94,7 +94,7 @@ onMounted(() => {
 
 </script>
 <template>
-<div class="p-4" :style="trackStyle">
+<div :style="trackStyle">
   <div class="relative flex pb-5 mt-4">
     <div>
       <input type="range" :class="createRangeClass(color)" :id="minRangeId" v-model.number="leftHandle" :min="min" :max="max"/>
@@ -106,7 +106,7 @@ onMounted(() => {
   </div>
   <ul class="flex justify-between w-full px-[5px]">
     <li v-for="n in max" class="flex justify-center relative">
-      <span class="text-sm text-ctp-surface2">{{ n }}</span>
+      <span class="text-sm text-ctp-subtext1 dark:text-ctp-surface2">{{ n }}</span>
     </li>
   </ul>
 </div>
