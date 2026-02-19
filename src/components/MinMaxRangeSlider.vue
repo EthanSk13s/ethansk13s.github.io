@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, useId } from 'vue';
 
+const emit = defineEmits(['onUpdate'])
+
 const inputId = useId();
 const minRangeId = `min-range-${inputId}`;
 const maxRangeId = `max-range-${inputId}`;
@@ -84,6 +86,7 @@ onMounted(() => {
 
   function updateRange() {
     updateTrack(rangeTrack!, minRange.valueAsNumber, maxRange.valueAsNumber);
+    emit("onUpdate");
   }
 
   minRange!.addEventListener("input", updateRange);
