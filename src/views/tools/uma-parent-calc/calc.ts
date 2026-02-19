@@ -51,7 +51,7 @@ class Skill {
     }
 }
 
-class UmaParent {
+export class UmaParent {
     isRankSS: boolean = false;
     aptChoices: number = 0;
     maxAptChoices: number = MAX_APTITUDE_CHOICES;
@@ -66,6 +66,10 @@ class UmaParent {
 
     constructor() {
         this.skills = [];
+    }
+
+    addSkill(skillType: SkillType) {
+        this.skills.push(new Skill(skillType));
     }
 
     calcOdds(): number {
