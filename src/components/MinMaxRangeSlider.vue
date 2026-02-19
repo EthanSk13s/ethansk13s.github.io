@@ -95,23 +95,19 @@ onMounted(() => {
 </script>
 <template>
 <div class="p-4" :style="trackStyle">
-  <div class="price-range p-4">
-
-    <div class="relative flex pb-5 mt-4">
-      <div>
-        <input type="range" :class="createRangeClass(color)" :id="minRangeId" v-model.number="leftHandle" :min="min" :max="max"/>
-        <input type="range" :class="createRangeClass(color)":id="maxRangeId" v-model.number="rightHandle" :min="min" :max="max"/>
-      </div>
-
-      <div class="relative w-full h-2 bg-ctp-surface0 rounded-md">
-        <div :id="rangeTrackId" :class="createTrackClass(color)"></div>
-      </div>
+  <div class="relative flex pb-5 mt-4">
+    <div>
+      <input type="range" :class="createRangeClass(color)" :id="minRangeId" v-model.number="leftHandle" :min="min" :max="max"/>
+      <input type="range" :class="createRangeClass(color)":id="maxRangeId" v-model.number="rightHandle" :min="min" :max="max"/>
     </div>
-    <ul class="flex justify-between w-full px-[5px]">
-      <li v-for="n in max" class="flex justify-center relative">
-        <span class="text-sm text-ctp-surface2">{{ n }}</span>
-      </li>
-    </ul>
+    <div class="relative w-full h-2 bg-ctp-surface0 rounded-md">
+      <div :id="rangeTrackId" :class="createTrackClass(color)"></div>
+    </div>
   </div>
+  <ul class="flex justify-between w-full px-[5px]">
+    <li v-for="n in max" class="flex justify-center relative">
+      <span class="text-sm text-ctp-surface2">{{ n }}</span>
+    </li>
+  </ul>
 </div>
 </template>
