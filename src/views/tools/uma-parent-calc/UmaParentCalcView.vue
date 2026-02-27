@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import MinMaxRangeSlider from '@/components/MinMaxRangeSlider.vue';
+import MinMaxRangeSlider from '@/components/sliders/MinMaxRangeSlider.vue';
+import RangeSlider from '@/components/sliders/RangeSlider.vue';
 import { UmaParent } from './calc';
 
 const MAX_STARS = 3;
@@ -52,12 +53,8 @@ function updateBlueSparks() {
         <div class="dark:bg-ctp-mantle bg-ctp-crust w-[340px] p-6 rounded-2xl border-ctp-blue-900 border-1">
           <div class="flex flex-col gap-6">
             <div class="text-lg">Possible aptitude choices</div>
-            <!-- 
-              TODO: This actually has to be a one track range input.
-              Make a new component for this one.
-             -->
-            <MinMaxRangeSlider @on-update="updateBlueChoices"
-              :color="1" v-model:left-handle="blueLeftChoiceH" v-model:right-handle="blueRightChoiceH"
+            <RangeSlider @on-update="updateBlueChoices"
+              :color="1" v-model:handle="blueRightChoiceH"
               :min="1" :max="6" :track-width="340"
             />
             <div class="text-lg">Minimum and maximum sparks</div>
