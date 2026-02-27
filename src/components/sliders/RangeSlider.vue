@@ -9,7 +9,7 @@ const inputId = useId();
 const rangeId = `range-${inputId}`;
 const rangeTrackId = `track-${inputId}`;
 
-const handle = defineModel<number>('rightHandle');
+const handle = defineModel<number>('handle');
 
 const { min, max, trackWidth, color = 0 } = defineProps<{
   min: number
