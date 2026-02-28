@@ -11,13 +11,13 @@ const STAT_THRESHOLDS_PROB: number[][] = [
     [0.2, 0.7, 0.1]
 ];
 
-enum SkillType {
+export enum SkillType {
     NORMAL,
     UPGRADED,
     GOLD
 }
 
-class Skill {
+export class Skill {
     skillType: SkillType;
     minSkillSpark: number = 0;
     maxSkillSpark: number = 2;
