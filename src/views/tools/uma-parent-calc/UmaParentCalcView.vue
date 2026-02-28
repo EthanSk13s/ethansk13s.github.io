@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+
+import { UmaParent, SkillType } from './calc';
 import MinMaxRangeSlider from '@/components/sliders/MinMaxRangeSlider.vue';
 import RangeSlider from '@/components/sliders/RangeSlider.vue';
-import { UmaParent } from './calc';
+import SkillContainer from '@/components/SkillContainer.vue';
 
 const MAX_STARS = 3;
 
@@ -34,6 +36,10 @@ function updateBlueSparks() {
   umaParent.value.maxStatSpark = Math.max(blueLeftH.value, blueRightH.value) - 1;
 }
 
+function addSkill() {
+  umaParent.value.addSkill(SkillType.NORMAL);
+}
+
 </script>
 
 <template>
@@ -52,7 +58,7 @@ function updateBlueSparks() {
         </h2>
         <div class="dark:bg-ctp-mantle bg-ctp-crust w-[340px] p-6 rounded-2xl border-ctp-blue-900 border-1">
           <div class="flex flex-col gap-6">
-            <div class="text-lg">Possible aptitude choices</div>
+            <div class="text-lg">Possible stat choices</div>
             <RangeSlider @on-update="updateBlueChoices"
               :color="1" v-model:handle="blueRightChoiceH"
               :min="1" :max="6" :track-width="340"
@@ -96,10 +102,25 @@ function updateBlueSparks() {
         </div>
       </div>
     </div>
-    <!--
-    <div>
-      Parent Stats: (Blue Min: {{ umaParent.minStatSpark }} Blue Max: {{ umaParent.maxStatSpark }})
+    <div class="flex flex-col gap-10 justify-center">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-row justify-between">
+          <h2 class="text-2xl font-semibold">
+            <span class="bg-ctp-sky p-0.5 mr-1"></span> Skills
+          </h2>
+          <button v-on:click="addSkill" class="cursor-pointer bg-ctp-sky rounded-full p-2 text-ctp-base shadow-sm
+            shadow-ctp-sky-900 hover:shadow-md"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+          </button>
+        </div>
+        <div class="flex md:flex-row gap-1.5 flex-col flex-wrap dark:bg-ctp-mantle bg-ctp-crust p-6 rounded-2xl border-ctp-sky border-1">
+          <h3 v-if="umaParent.skills.length == 0" class="text-ctp-subtext0">No Skills added.</h3>
+          <SkillContainer v-else v-for="skill in umaParent.skills" :skill="skill"/>
+        </div>
+      </div>
     </div>
-    -->
   </div>
 </template>
