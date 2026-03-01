@@ -40,6 +40,9 @@ function addSkill() {
   umaParent.value.addSkill(SkillType.NORMAL);
 }
 
+function removeSkill(index: number) {
+  umaParent.value.skills.splice(index, 1);
+}
 </script>
 
 <template>
@@ -108,7 +111,9 @@ function addSkill() {
           <h2 class="text-2xl font-semibold">
             <span class="bg-ctp-sky p-0.5 mr-1"></span> Skills
           </h2>
-          <button v-on:click="addSkill" class="cursor-pointer bg-ctp-sky rounded-full p-2 text-ctp-base shadow-sm
+          <button v-on:click="addSkill" 
+            class="cursor-pointer bg-ctp-sky
+            rounded-full p-2 text-ctp-base shadow-sm
             shadow-ctp-sky-900 hover:shadow-md"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -118,7 +123,7 @@ function addSkill() {
         </div>
         <div class="flex md:flex-row gap-1.5 flex-col flex-wrap dark:bg-ctp-mantle bg-ctp-crust p-6 rounded-2xl border-ctp-sky border-1">
           <h3 v-if="umaParent.skills.length == 0" class="text-ctp-subtext0">No Skills added.</h3>
-          <SkillContainer v-else v-for="skill in umaParent.skills" :skill="skill"/>
+          <SkillContainer v-else @on-close="removeSkill" v-for="(skill, index) in umaParent.skills" :skill="skill" :index="index"/>
         </div>
       </div>
     </div>
