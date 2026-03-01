@@ -18,12 +18,16 @@ export enum SkillType {
 }
 
 export class Skill {
+    static skillId = 0;
     skillType: SkillType;
+    id: number;
     minSkillSpark: number = 0;
     maxSkillSpark: number = 2;
 
     constructor(skillType: SkillType) {
         this.skillType = skillType;
+        Skill.skillId++;
+        this.id = Skill.skillId;
     }
 
     calcOdds(isRankSS: boolean) {

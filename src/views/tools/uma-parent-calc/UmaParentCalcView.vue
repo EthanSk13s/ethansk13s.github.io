@@ -127,6 +127,7 @@ function removeSkill(index: number) {
           <h3 v-if="umaParent.skills.length == 0" class="text-ctp-subtext0">No Skills added.</h3>
           <SkillContainer v-else @on-close="removeSkill" 
             v-for="(skill, index) in umaParent.skills"
+            :key="skill.id"
             :skill="skill" :index="index"
           />
         </div>
