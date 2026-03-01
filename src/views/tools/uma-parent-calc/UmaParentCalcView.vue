@@ -121,9 +121,14 @@ function removeSkill(index: number) {
             </svg>
           </button>
         </div>
-        <div class="flex md:flex-row gap-1.5 flex-col flex-wrap dark:bg-ctp-mantle bg-ctp-crust p-6 rounded-2xl border-ctp-sky border-1">
+        <div class="flex flex-col md:flex-row gap-1.5 items-center md:flex-wrap dark:bg-ctp-mantle
+          bg-ctp-crust p-6 rounded-2xl border-ctp-sky border-1"
+        >
           <h3 v-if="umaParent.skills.length == 0" class="text-ctp-subtext0">No Skills added.</h3>
-          <SkillContainer v-else @on-close="removeSkill" v-for="(skill, index) in umaParent.skills" :skill="skill" :index="index"/>
+          <SkillContainer v-else @on-close="removeSkill" 
+            v-for="(skill, index) in umaParent.skills"
+            :skill="skill" :index="index"
+          />
         </div>
       </div>
     </div>

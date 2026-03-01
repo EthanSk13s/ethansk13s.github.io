@@ -26,7 +26,7 @@ function updateSkillType(ev: Event) {
 
 </script>
 <template>
-<div class="flex flex-col w-[200px] bg-ctp-base p-3 border-ctp-sky-300 rounded-md border-1 gap-5">
+<div class="flex flex-col w-[300px] md:w-[200px] bg-ctp-base p-3 border-ctp-sky-300 rounded-md border-1 gap-5">
   <div class="grid">
     <button @click="$emit('onClose', props.index)" 
       class="cursor-pointer col-start-1 row-start-2 place-self-center
