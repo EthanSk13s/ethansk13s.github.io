@@ -5,6 +5,7 @@ import { UmaParent, SkillType } from './calc';
 import MinMaxRangeSlider from '@/components/sliders/MinMaxRangeSlider.vue';
 import RangeSlider from '@/components/sliders/RangeSlider.vue';
 import SkillContainer from '@/components/SkillContainer.vue';
+import SelectComponent from '@/components/SelectComponent.vue';
 
 const MAX_STARS = 3;
 
@@ -23,6 +24,12 @@ const redRightChoiceH = ref(12);
 
 const greenLeftH = ref(1);
 const greenRightH = ref(MAX_STARS);
+
+const statThresholds = {
+  "Less than 600": 0,
+  "More than 600": 1,
+  "More than 1100": 2
+}
 
 function updateRedSparks() {
   umaParent.value.minAptSpark = Math.min(redLeftH.value, redRightH.value);
@@ -48,6 +55,10 @@ function updateGreenSparks() {
   umaParent.value.maxGreenSpark = Math.max(greenLeftH.value, greenRightH.value);
 }
 
+function updateStatThresholds(option: any) {
+  umaParent.value.statThreshold = Number(option);
+}
+
 function addSkill() {
   umaParent.value.addSkill(SkillType.NORMAL);
 }
@@ -66,7 +77,12 @@ function removeSkill(index: number) {
       Use this tool to calculate the average likeliness that your desired parent can appear within
       a set amount of runs.
     </h1>
-    {{  umaParent }} {{ umaParent.calcOdds() * 100 }}%
+    <div class="flex flex-row gap-2">
+      <div class="self-center bg-ctp-blue text-ctp-crust dark:text-ctp-mantle font-bold rounded p-0.5 pl-1 pr-1">
+        Stat Threshold
+      </div>
+      <SelectComponent @update="updateStatThresholds" :options="statThresholds"/>
+    </div>
     <div class="flex flex-col md:flex-row gap-10 justify-center">
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-semibold">
