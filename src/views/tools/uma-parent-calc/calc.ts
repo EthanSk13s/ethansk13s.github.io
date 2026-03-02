@@ -95,6 +95,8 @@ export class UmaParent {
         let thrshldProb;
         if (this.minStatSpark == 0 && this.maxStatSpark == 2) { 
             thrshldProb = 1; 
+        } else if (this.minStatSpark == this.maxStatSpark) {
+            thrshldProb = thrshldProbs[this.maxStatSpark];
         } else {
             thrshldProb = thrshldProbs[this.minStatSpark] + thrshldProbs[this.maxStatSpark];
         }
