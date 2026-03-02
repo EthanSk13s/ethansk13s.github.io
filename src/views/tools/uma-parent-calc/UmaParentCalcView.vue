@@ -176,5 +176,9 @@ function removeSkill(index: number) {
         </div>
       </div>
     </div>
+    <div class="flex flex-col gap-4">
+      <h2 class="text-2xl">Changelog</h2>
+      <h4 class="text-xl">Mar 1. (Initial Release)</h4>
+    </div>
   </div>
 </template>
