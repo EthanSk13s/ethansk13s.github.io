@@ -18,7 +18,7 @@ function updateSelection(ev: Event) {
   <div class="grid">
     <select @change="updateSelection"
       class="col-start-1 row-start-1 appearance-none bg-ctp-surface0 rounded-md
-      border-1 border-ctp-rosewater-900 p-0.5 pl-1.5 hover:bg-ctp-surface1 pr-8"
+      border-1 border-ctp-rosewater-900 p-0.5 ml-2 pl-1.5 hover:bg-ctp-surface1 pr-8"
     >
       <option v-for="(opt, optStr) in options" :value="opt">{{ optStr }}</option>
     </select>
