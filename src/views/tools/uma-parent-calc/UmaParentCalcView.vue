@@ -165,7 +165,7 @@ function removeSkill(index: number) {
           </button>
         </div>
         <div class="flex flex-col md:flex-row gap-1.5 items-center md:flex-wrap dark:bg-ctp-mantle
-          bg-ctp-crust p-6 rounded-2xl border-ctp-sky border-1"
+          bg-ctp-crust p-6 rounded-2xl border-ctp-sky border-1 overflow-auto max-h-[400px]"
         >
           <h3 v-if="umaParent.skills.length == 0" class="text-ctp-subtext0">No Skills added.</h3>
           <SkillContainer v-else @on-close="removeSkill" 
