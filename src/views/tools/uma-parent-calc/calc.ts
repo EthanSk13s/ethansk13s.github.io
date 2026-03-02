@@ -57,15 +57,18 @@ export class Skill {
 
 export class UmaParent {
     isRankSS: boolean = false;
-    aptChoices: number = 0;
+    aptChoices: number = 1;
     maxAptChoices: number = MAX_APTITUDE_CHOICES;
     minAptSpark: number = 1;
     maxAptSpark: number = 3;
 
     statThreshold: number = 0;
-    statChoices: number = 0;
+    statChoices: number = 1;
     minStatSpark: number = 0;
     maxStatSpark: number = 2;
+
+    minGreenSpark: number = 1;
+    maxGreenSpark: number = 3;
 
     skills: Skill[];
 
@@ -83,6 +86,10 @@ export class UmaParent {
         let fixedProb = (this.maxAptSpark - this.minAptSpark) + 1;
         let aptProb = (this.aptChoices / this.maxAptChoices) * (fixedProb / 3);
 
+        // Getting Green sparks is also completely random.
+        fixedProb = (this.maxGreenSpark - this.minGreenSpark) + 1;
+        let greenProb = (fixedProb / 3);
+
         // Determine which stat thresholds we are calculating on.
         let thrshldProbs = STAT_THRESHOLDS_PROB[this.statThreshold];
         let thrshldProb;
@@ -93,13 +100,12 @@ export class UmaParent {
         }
 
         let statProb = (this.statChoices / MAX_STAT_CHOICES) * thrshldProb;
-
         let skillProb = 1;
         for (const skill of this.skills) {
             skillProb *= skill.calcOdds(this.isRankSS);
         }
 
-        return aptProb * statProb * skillProb;
+        return aptProb * greenProb * statProb * skillProb;
     }
 }
 

@@ -43,6 +43,11 @@ function updateRedChoices() {
   umaParent.value.maxAptChoices = Math.max(redLeftChoiceH.value, redRightChoiceH.value);
 }
 
+function updateGreenSparks() {
+  umaParent.value.minGreenSpark = Math.min(greenLeftH.value, greenRightH.value);
+  umaParent.value.maxGreenSpark = Math.max(greenLeftH.value, greenRightH.value);
+}
+
 function addSkill() {
   umaParent.value.addSkill(SkillType.NORMAL);
 }
@@ -61,6 +66,7 @@ function removeSkill(index: number) {
       Use this tool to calculate the average likeliness that your desired parent can appear within
       a set amount of runs.
     </h1>
+    {{  umaParent }} {{ umaParent.calcOdds() * 100 }}%
     <div class="flex flex-col md:flex-row gap-10 justify-center">
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-semibold">
@@ -105,8 +111,8 @@ function removeSkill(index: number) {
           <span class="bg-ctp-green p-0.5 mr-1"></span> Green Sparks
         </h2>
         <div class="dark:bg-ctp-mantle bg-ctp-crust w-[300px] p-6 rounded-2xl border-ctp-green-900 border-1">
-          <MinMaxRangeSlider :color="3" @on-update="updateRedSparks" 
-            :left-handle="greenLeftH" :right-handle="greenRightH"
+          <MinMaxRangeSlider :color="3" @on-update="updateGreenSparks" 
+            v-model:left-handle="greenLeftH" v-model:right-handle="greenRightH"
             :min="1" :max="3" :track-width="300"
           />
         </div>
