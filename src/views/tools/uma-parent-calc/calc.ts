@@ -60,6 +60,7 @@ export class UmaParent {
     aptChoices: number = 0;
     maxAptChoices: number = MAX_APTITUDE_CHOICES;
     minAptSpark: number = 1;
+    maxAptSpark: number = 3;
 
     statThreshold: number = 0;
     statChoices: number = 0;
@@ -79,7 +80,8 @@ export class UmaParent {
     calcOdds(): number {
         // Getting Pink sparks is completely random, 
         // so its (number of choices / max choices of three).
-        let aptProb = (this.aptChoices / this.maxAptChoices) * (this.minAptSpark / 3);
+        let fixedProb = (this.maxAptSpark - this.minAptSpark) + 1;
+        let aptProb = (this.aptChoices / this.maxAptChoices) * (fixedProb / 3);
 
         // Determine which stat thresholds we are calculating on.
         let thrshldProbs = STAT_THRESHOLDS_PROB[this.statThreshold];
