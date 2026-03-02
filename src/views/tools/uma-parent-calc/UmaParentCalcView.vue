@@ -36,6 +36,11 @@ function updateBlueSparks() {
   umaParent.value.maxStatSpark = Math.max(blueLeftH.value, blueRightH.value) - 1;
 }
 
+function updateRedChoices() {
+  umaParent.value.aptChoices = Math.min(redLeftChoiceH.value, redRightChoiceH.value);
+  umaParent.value.maxAptChoices = Math.max(redLeftChoiceH.value, redRightChoiceH.value);
+}
+
 function addSkill() {
   umaParent.value.addSkill(SkillType.NORMAL);
 }
@@ -81,7 +86,7 @@ function removeSkill(index: number) {
         <div class="dark:bg-ctp-mantle bg-ctp-crust w-[340px] p-6 rounded-2xl border-ctp-red-900 border-1">
           <div class="flex flex-col gap-6">
             <div class="text-lg">Possible aptitude choices</div>
-              <MinMaxRangeSlider
+              <MinMaxRangeSlider @on-update="updateRedChoices"
                 :color="2" v-model:left-handle="redLeftChoiceH" v-model:right-handle="redRightChoiceH"
                 :min="1" :max="12" :track-width="340"
               />
