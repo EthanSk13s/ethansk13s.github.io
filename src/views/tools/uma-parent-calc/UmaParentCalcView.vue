@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { UmaParent, SkillType } from './calc';
+import { UmaParent, SkillType, calcParentOdds } from './calc';
 import MinMaxRangeSlider from '@/components/sliders/MinMaxRangeSlider.vue';
 import RangeSlider from '@/components/sliders/RangeSlider.vue';
 import SkillContainer from '@/components/SkillContainer.vue';
 import SelectComponent from '@/components/SelectComponent.vue';
+import NumberInput from '@/components/NumberInput.vue';
 
 const MAX_STARS = 3;
 
@@ -24,6 +25,8 @@ const redRightChoiceH = ref(12);
 
 const greenLeftH = ref(1);
 const greenRightH = ref(MAX_STARS);
+
+const numOfRuns = ref(1);
 
 const statThresholds = {
   "Less than 600": 0,
@@ -59,6 +62,10 @@ function updateStatThresholds(option: any) {
   umaParent.value.statThreshold = Number(option);
 }
 
+function updateNumOfRuns(runs: number) {
+  numOfRuns.value = runs;
+}
+
 function addSkill() {
   umaParent.value.addSkill(SkillType.NORMAL);
 }
@@ -77,6 +84,13 @@ function removeSkill(index: number) {
       Use this tool to calculate the average likeliness that your desired parent can appear within
       a set amount of runs.
     </h1>
+    Estimated Odds: {{ ((calcParentOdds(umaParent, numOfRuns)) * 100).toFixed(2) }}%
+    <div class="flex flex-row gap-2">
+      <div class="self-center bg-ctp-flamingo text-ctp-crust dark:text-ctp-mantle font-bold rounded p-0.5 pl-1 pr-1">
+        Numbers of Runs
+      </div>
+      <NumberInput @update="updateNumOfRuns"/>
+    </div>
     <div class="flex flex-row gap-2">
       <div class="self-center bg-ctp-blue text-ctp-crust dark:text-ctp-mantle font-bold rounded p-0.5 pl-1 pr-1">
         Stat Threshold
