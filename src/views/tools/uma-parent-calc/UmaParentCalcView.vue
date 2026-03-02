@@ -9,12 +9,12 @@ import SkillContainer from '@/components/SkillContainer.vue';
 const MAX_STARS = 3;
 
 const umaParent = ref(new UmaParent())
-umaParent.value.statChoices = 6;
+umaParent.value.statChoices = 5;
 umaParent.value.aptChoices = 1;
 
 const blueLeftH = ref(1);
 const blueRightH = ref(MAX_STARS);
-const blueChoiceH = ref(6);
+const blueChoiceH = ref(5);
 
 const redLeftH = ref(1);
 const redRightH = ref(MAX_STARS);
@@ -71,7 +71,7 @@ function removeSkill(index: number) {
             <div class="text-lg">Possible stat choices</div>
             <RangeSlider @on-update="updateBlueChoices"
               :color="1" v-model:handle="blueChoiceH"
-              :min="1" :max="6" :track-width="340"
+              :min="1" :max="5" :track-width="340"
             />
             <div class="text-lg">Minimum and maximum sparks</div>
             <MinMaxRangeSlider @on-update="updateBlueSparks"
