@@ -7,6 +7,7 @@ import RangeSlider from '@/components/sliders/RangeSlider.vue';
 import SkillContainer from '@/components/SkillContainer.vue';
 import SelectComponent from '@/components/SelectComponent.vue';
 import NumberInput from '@/components/NumberInput.vue';
+import HiddenDropdown from '@/components/HiddenDropdown.vue';
 
 const MAX_STARS = 3;
 
@@ -84,6 +85,30 @@ function removeSkill(index: number) {
       Use this tool to calculate the average likeliness that your desired parent can appear within
       a set amount of runs.
     </h1>
+    <HiddenDropdown :color="'sapphire'" :header="'Instructions'">
+      <div class="flex flex-col gap-4">
+        <div>
+          For the most part, this tool should be simple to use. The sliders with three values is the spark amount you want.
+        </div>
+        <div>
+            For blue sparks, There are two things to keep in mind. First, your stat threshold is how much of those stats you have
+            above that threshold. Second, the possible stat choices represent which of the five stats you want. If you want either stamina or
+            power, then you set it to two. Which would make your possible choices 2 / 5.
+        </div>
+        <div>
+            However, red sparks are a little different. Your possible aptitude choices can vary from Uma to Uma. So, you have varied amount
+            of aptitudes you may get. You can get this amount by counting how many of your style, and distance aptitudes you have at A rank
+            or above. You then set the right handle to this value, while the left handle is how much you want to be inherited.
+        </div>
+        <div>
+          As an example let's take Oguri Cap. She has an A aptitude in Turf, Mile, Medium, Pace, and Late. Which would make the max choice be
+          five. If we want to inherit Mile, then we set the left handle to two. Our possible choices would be 1 / 5.
+        </div>
+        <div>
+            For skills, you add a skill, and set the type of skill you want inherited and adjust the spark amount you need.
+        </div>
+      </div>
+    </HiddenDropdown>
     Estimated Odds: {{ ((calcParentOdds(umaParent, numOfRuns)) * 100).toFixed(2) }}%
     <div class="flex flex-row gap-2">
       <div class="self-center bg-ctp-flamingo text-ctp-crust dark:text-ctp-mantle font-bold rounded p-0.5 pl-1 pr-1">
@@ -176,9 +201,16 @@ function removeSkill(index: number) {
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-4">
-      <h2 class="text-2xl">Changelog</h2>
-      <h4 class="text-xl">Mar 1. (Initial Release)</h4>
-    </div>
+    <HiddenDropdown :color="'red'" :header="'Changelog'">
+      <div class="flex flex-col gap-4 overflow-auto max-h-[600px]">
+        <div>
+          <h4 class="text-xl">Mar 3.</h4>
+          <ul class="list-disc">
+            <li>Added instructions.</li>
+          </ul>
+        </div>
+        <h4 class="text-xl">Mar 1. (Initial Release)</h4>
+      </div>
+    </HiddenDropdown>
   </div>
 </template>
