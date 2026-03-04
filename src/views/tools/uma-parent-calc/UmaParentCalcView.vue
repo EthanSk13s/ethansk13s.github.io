@@ -102,7 +102,7 @@ function removeSkill(index: number) {
         </div>
         <div>
           As an example let's take Oguri Cap. She has an A aptitude in Turf, Mile, Medium, Pace, and Late. Which would make the max choice be
-          five. If we want to inherit Mile, then we set the left handle to two. Our possible choices would be 1 / 5.
+          five. If we want to inherit Mile, then we set the left handle to one. Our possible choices would be 1 / 5.
         </div>
         <div>
             For skills, you add a skill, and set the type of skill you want inherited and adjust the spark amount you need.
