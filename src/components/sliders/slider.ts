@@ -4,21 +4,26 @@ export function useRangeClass(color: number): string[] {
   let classes = [
     "slider",
     "slider-thumb",
-    "slider-thumb:border-3"
+    "slider-thumb:border-3",
+    "hover:slider-thumb:ring-10"
   ];
 
   switch (color) {
     case 1:
       classes.push("slider-thumb:border-ctp-blue", "slider-thumb:bg-ctp-blue");
+      classes.push("hover:slider-thumb:ring-ctp-blue/10");
       break;
     case 2:
       classes.push("slider-thumb:border-ctp-red", "slider-thumb:bg-ctp-red");
+      classes.push("hover:slider-thumb:ring-ctp-red/10");
       break;
     case 3:
       classes.push("slider-thumb:border-ctp-green", "slider-thumb:bg-ctp-green");
+      classes.push("hover:slider-thumb:ring-ctp-green/10");
       break;
     default:
       classes.push("slider-thumb:border-ctp-rosewater", "slider-thumb:bg-ctp-rosewater");
+      classes.push("hover:slider-thumb:ring-ctp-rosewater/10");
       break;
   }
 

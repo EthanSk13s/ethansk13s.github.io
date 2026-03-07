@@ -13,7 +13,7 @@ function setButtonColor() {
     case "sapphire":
       return 'bg-ctp-sapphire hover:bg-ctp-sapphire-200';
     case "red":
-      return 'bg-ctp-red hover-bg-ctp-red-200';
+      return 'bg-ctp-red hover:bg-ctp-red-200';
   } 
 }
 

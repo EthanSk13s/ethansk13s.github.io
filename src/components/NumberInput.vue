@@ -28,7 +28,8 @@ function handleDigitInput(ev: KeyboardEvent) {
 
 <template>
   <input @input="updateInput" @keydown="handleDigitInput"
-    class="w-1/6 md:w-1/12 rounded bg-ctp-surface0 px-0.5 text-center text-ctp-text focus:outline-none focus:ring focus:ring-ctp-lavender"
+    class="w-1/6 md:w-1/12 rounded bg-ctp-surface0 px-0.5 text-center text-ctp-text 
+    focus:outline-none focus:ring-2 focus:ring-ctp-lavender hover:bg-ctp-surface1"
     type="text" value="1"
   />
 </template>

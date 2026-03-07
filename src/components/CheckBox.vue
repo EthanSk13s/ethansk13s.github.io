@@ -27,6 +27,8 @@ function emitUpdate(ev: Event) {
     >
       {{ label }}
     </label>
-    <input @change="emitUpdate" :id="checkBoxId" type="checkbox">
+    <input class="accent-ctp-sapphire hover:accent-ctp-sapphire-50 
+      hover:ring-2 hover:ring-ctp-sapphire" @change="emitUpdate" :id="checkBoxId" type="checkbox"
+    >
   </div>
 </template>
