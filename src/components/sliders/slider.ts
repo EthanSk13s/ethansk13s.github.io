@@ -1,46 +1,54 @@
 import { onMounted, onUnmounted } from "vue";
 
-export function useRangeClass(color: number) {
-  let className;
+export function useRangeClass(color: number): string[] {
+  let classes = [
+    "slider",
+    "slider-thumb",
+    "slider-thumb:border-3"
+  ];
 
   switch (color) {
     case 1:
-      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-blue slider-thumb:bg-ctp-blue";
+      classes.push("slider-thumb:border-ctp-blue", "slider-thumb:bg-ctp-blue");
       break;
     case 2:
-      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-red slider-thumb:bg-ctp-red";
+      classes.push("slider-thumb:border-ctp-red", "slider-thumb:bg-ctp-red");
       break;
     case 3:
-      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-green slider-thumb:bg-ctp-green";
+      classes.push("slider-thumb:border-ctp-green", "slider-thumb:bg-ctp-green");
       break;
     default:
-      className = "slider slider-thumb slider-thumb:border-3 slider-thumb:border-ctp-rosewater slider-thumb:bg-ctp-rosewater";
+      classes.push("slider-thumb:border-ctp-rosewater", "slider-thumb:bg-ctp-rosewater");
       break;
   }
 
-  return className;
+  return classes;
 }
 
-export function useTrackClass(color: number): string {
-  let className;
+export function useTrackClass(color: number): string[] {
+  let classes = [
+    "absolute",
+    "h-2",
+    "rounded-md"
+  ];
 
 
   switch (color) {
   case 1:
-    className = "absolute h-2 bg-ctp-blue rounded-md";
+    classes.push("bg-ctp-blue");
     break;
   case 2:
-    className = "absolute h-2 bg-ctp-red rounded-md";
+    classes.push("bg-ctp-red");
     break;
   case 3:
-    className = "absolute h-2 bg-ctp-green rounded-md";
+    classes.push("bg-ctp-green");
     break;
   default:
-    className = "absolute h-2 bg-ctp-rosewater rounded-md";
+    classes.push("bg-ctp-rosewater");
     break;
   }
 
-  return className;
+  return classes;
 }
 
 export function updateTrack(track: HTMLElement, leftH: number, rightH: number, max: number, min: number) {
