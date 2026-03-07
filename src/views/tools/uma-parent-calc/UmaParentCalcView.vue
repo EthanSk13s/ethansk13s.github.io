@@ -8,6 +8,7 @@ import SkillContainer from '@/components/SkillContainer.vue';
 import SelectComponent from '@/components/SelectComponent.vue';
 import NumberInput from '@/components/NumberInput.vue';
 import HiddenDropdown from '@/components/HiddenDropdown.vue';
+import CheckBox from '@/components/CheckBox.vue';
 
 const MAX_STARS = 3;
 
@@ -15,6 +16,7 @@ const umaParent = ref(new UmaParent())
 umaParent.value.statChoices = 5;
 umaParent.value.aptChoices = 1;
 
+const test = ref(umaParent.value.isRankSS);
 const blueLeftH = ref(1);
 const blueRightH = ref(MAX_STARS);
 const blueChoiceH = ref(5);
@@ -122,6 +124,7 @@ function removeSkill(index: number) {
       </div>
       <SelectComponent @update="updateStatThresholds" :options="statThresholds"/>
     </div>
+    <CheckBox @update="(val: boolean) => { umaParent.isRankSS = val }" :label="'SS Rank'"/>
     <div class="flex flex-col md:flex-row gap-10 justify-center">
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-semibold">
