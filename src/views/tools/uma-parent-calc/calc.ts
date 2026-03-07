@@ -33,7 +33,7 @@ export class Skill {
     calcOdds(isRankSS: boolean) {
         // Determine which skill threshold the parent is in.
         //  If the parent is an SS Rank, we'll have to switch our calculations.
-        let skillThrshldProbs = isRankSS ? NORM_WHITE_SKILL_SPRK_PROB : SS_WHITE_SKILL_SPRK_PROB;
+        let skillThrshldProbs = isRankSS ? SS_WHITE_SKILL_SPRK_PROB : NORM_WHITE_SKILL_SPRK_PROB;
 
         let thrshldProb;
         if (this.minSkillSpark == 0 && this.maxSkillSpark == 2) { 
