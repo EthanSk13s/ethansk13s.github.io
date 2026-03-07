@@ -207,6 +207,13 @@ function removeSkill(index: number) {
     <HiddenDropdown :color="'red'" :header="'Changelog'">
       <div class="flex flex-col gap-4 overflow-auto max-h-[600px]">
         <div>
+          <h4 class="text-xl">Mar 6.</h4>
+          <ul class="list-disc">
+            <li>Added toggle for SS Rank Umas for skill calculations.</li>
+            <li>Added hover effects for some elements.</li>
+          </ul>
+        </div>
+        <div>
           <h4 class="text-xl">Mar 3.</h4>
           <ul class="list-disc">
             <li>Added instructions.</li>
